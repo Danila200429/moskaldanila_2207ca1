@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вывод чисел с интервалами</title>
+</head>
+<body>
+    <h1>Вывод чисел с интервалами</h1>
+    <div id="output"></div>
+
+    <script>
+        function printNumber(num) {
+            document.getElementById('output').innerHTML += num + '<br>';
+        }
+
+        for (let i = 1; i <= 3; i++) {
+            setTimeout((num) => {
+                printNumber(num);
+            }, 1000 * i, i);
+        }
+    </script>
+</body>
+</html>

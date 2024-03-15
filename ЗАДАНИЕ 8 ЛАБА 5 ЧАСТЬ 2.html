@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление значением</title>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #value {
+            font-size: 24px;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Управление значением</h1>
+    <div class="container">
+        <button onclick="decreaseValue()">-</button>
+        <div id="value">0</div>
+        <button onclick="increaseValue()">+</button>
+    </div>
+
+    <script>
+        let valueElement = document.getElementById('value');
+        let value = 0;
+
+        function updateValue() {
+            valueElement.textContent = value;
+        }
+
+        function increaseValue() {
+            value++;
+            updateValue();
+        }
+
+        function decreaseValue() {
+            value--;
+            updateValue();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка анаграммы</title>
+</head>
+<body>
+    <h1>Проверка анаграммы</h1>
+    <label for="str1">Первая строка:</label>
+    <input type="text" id="str1"><br>
+    <label for="str2">Вторая строка:</label>
+    <input type="text" id="str2"><br>
+    <button onclick="checkAnagram()">Проверить</button>
+    <div id="result"></div>
+
+    <script>
+        function isAnagram(str1, str2) {
+            const arr1 = str1.toLowerCase().split('').sort().join('');
+            const arr2 = str2.toLowerCase().split('').sort().join('');
+            return arr1 === arr2;
+        }
+
+        function checkAnagram() {
+            const str1 = document.getElementById('str1').value;
+            const str2 = document.getElementById('str2').value;
+            const resultDiv = document.getElementById('result');
+            
+            if (isAnagram(str1, str2)) {
+                resultDiv.innerText = "Строки являются анаграммами.";
+            } else {
+                resultDiv.innerText = "Строки не являются анаграммами.";
+            }
+        }
+    </script>
+</body>
+</html>

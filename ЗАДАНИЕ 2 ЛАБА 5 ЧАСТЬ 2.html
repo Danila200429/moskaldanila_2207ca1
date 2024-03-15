@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перевернуть строку</title>
+</head>
+<body>
+    <h1>Перевернуть строку</h1>
+    <button onclick="reverseString()">Перевернуть</button>
+    <div id="result"></div>
+
+    <script>
+        function reverseString() {
+            const str = "!тевирП";
+            const reversedStr = str.split('').reverse().join('');
+            document.getElementById('result').innerText = `Перевернутая строка: ${reversedStr}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пересечение массивов</title>
+</head>
+<body>
+    <h1>Пересечение массивов</h1>
+    <label for="arrA">Массив A:</label>
+    <input type="text" id="arrA" placeholder="Введите элементы массива A"><br>
+    <label for="arrB">Массив B:</label>
+    <input type="text" id="arrB" placeholder="Введите элементы массива B"><br>
+    <button onclick="findIntersection()">Найти пересечение</button>
+    <div id="result"></div>
+
+    <script>
+        function intersect(arrA, arrB) {
+            const setA = new Set(arrA);
+            const setB = new Set(arrB);
+            return Array.from(setA).filter(item => setB.has(item));
+        }
+
+        function findIntersection() {
+            const arrA = document.getElementById('arrA').value.split(',').map(item => item.trim());
+            const arrB = document.getElementById('arrB').value.split(',').map(item => item.trim());
+            const intersection = intersect(arrA, arrB);
+            document.getElementById('result').innerText = `Пересечение: ${intersection}`;
+        }
+    </script>
+</body>
+</html>

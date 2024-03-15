@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Числа Фибоначчи</title>
+</head>
+<body>
+    <h1>Числа Фибоначчи</h1>
+    <button onclick="startFibonacci()">Start</button>
+    <button onclick="stopFibonacci()">Stop</button>
+    <div id="fibonacciDisplay"></div>
+
+    <script>
+        let intervalId;
+        let fibonacciDisplay = document.getElementById('fibonacciDisplay');
+
+        function fibonacci() {
+            let a = 0, b = 1;
+            fibonacciDisplay.innerHTML += a + '<br>';
+            fibonacciDisplay.innerHTML += b + '<br>';
+
+            function next() {
+                const nextNumber = a + b;
+                fibonacciDisplay.innerHTML += nextNumber + '<br>';
+                a = b;
+                b = nextNumber;
+            }
+
+            return next;
+        }
+
+        function startFibonacci() {
+            const next = fibonacci();
+            intervalId = setInterval(next, 1000);
+        }
+
+        function stopFibonacci() {
+            clearInterval(intervalId);
+            fibonacciDisplay.innerHTML += 'Остановлено';
+        }
+    </script>
+</body>
+</html>

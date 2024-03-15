@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка на палиндром</title>
+</head>
+<body>
+    <h1>Проверка на палиндром</h1>
+    <label for="inputString">Введите строку:</label>
+    <input type="text" id="inputString">
+    <button onclick="checkPalindrome()">Проверить</button>
+    <div id="result"></div>
+
+    <script>
+        function isPalindrome(str) {
+            const cleanedStr = str.toLowerCase().replace(/[\W_]/g, '');
+            const reversedStr = cleanedStr.split('').reverse().join('');
+            return cleanedStr === reversedStr;
+        }
+
+        function checkPalindrome() {
+            const inputString = document.getElementById('inputString').value;
+            const resultDiv = document.getElementById('result');
+            
+            if (isPalindrome(inputString)) {
+                resultDiv.innerText = "Это палиндром.";
+            } else {
+                resultDiv.innerText = "Это не палиндром.";
+            }
+        }
+    </script>
+</body>
+</html>

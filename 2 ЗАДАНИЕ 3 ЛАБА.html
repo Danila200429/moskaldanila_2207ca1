@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Example</title>
+</head>
+<body>
+    <h1>Promise Example</h1>
+    <button onclick="startDelay()">Start Delay</button>
+    <button onclick="getGithubRepository()">Get GitHub Repository</button>
+    <div id="counterDisplay"></div>
+    <div id="repositoryDisplay"></div>
+
+    <script>
+        // Функция delay(N), возвращающая промис, который сделает resolve() через N секунд.
+        function delay(N) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve();
+                }, N * 1000);
+            });
+        }
+
+        // Функция для счетчика N, N-1 ... 2, 1, 0 через функцию delay.
+        async function startDelay() {
+            for (let i = 5; i >= 0; i--) {
+                document.getElementById('counterDisplay').innerText = i;
+                await delay(1);
+            }
+            document.getElementById('counterDisplay').innerText = '';
+        }
+
+        // Функция, возвращающая название первого репозитория на github.com по имени пользователя.
+        async function getGithubRepository() {
+            const username = prompt("Enter GitHub username:");
+            if (username) {
+                try {
+                    const response = await fetch(`https://api.github.com/users/${username}`);
+                    const userData = await response.json();
+                    const repositoryResponse = await fetch(userData.repos_url);
+                    const repositories = await repositoryResponse.json();
+                    if (repositories.length > 0) {
+                        document.getElementById('repositoryDisplay').innerText = `First repository of ${username}: ${repositories[0].name}`;
+                    } else {
+                        document.getElementById('repositoryDisplay').innerText = `${username} has no repositories.`;
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error occurred. Please check console for details.');
+                }
+            } else {
+                alert("Please enter a valid GitHub username.");
+            }
+        }
+    </script>
+</body>
+</html>

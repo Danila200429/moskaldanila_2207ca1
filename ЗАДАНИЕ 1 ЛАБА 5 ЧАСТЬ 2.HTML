@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Максимум и минимум массива</title>
+</head>
+<body>
+    <h1>Максимум и минимум массива</h1>
+    <button onclick="calculateMinMax()">Вычислить</button>
+    <div id="result"></div>
+
+    <script>
+        function calculateMinMax() {
+            const arr = [1, 6, -1, 22, 13];
+            const max = Math.max(...arr);
+            const min = Math.min(...arr);
+            document.getElementById('result').innerText = `Максимум: ${max}, Минимум: ${min}`;
+        }
+    </script>
+</body>
+</html>

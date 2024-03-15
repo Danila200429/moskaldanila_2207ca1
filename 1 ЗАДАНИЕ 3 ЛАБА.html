@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+    <h1>Counter</h1>
+    <button onclick="startCounter()">Start</button>
+    <button onclick="pauseCounter()">Pause</button>
+    <button onclick="stopCounter()">Stop</button>
+    <div id="counterDisplay"></div>
+
+    <script>
+        let myCounter;
+
+        function startCounter() {
+            let n = parseInt(prompt("Enter a number to start counting:"));
+            if (!isNaN(n)) {
+                if (myCounter) {
+                    myCounter.stop();
+                }
+                myCounter = createCounter(n);
+                myCounter.start();
+            } else {
+                alert("Please enter a valid number.");
+            }
+        }
+
+        function pauseCounter() {
+            if (myCounter) {
+                myCounter.pause();
+            } else {
+                alert("Counter not started.");
+            }
+        }
+
+        function stopCounter() {
+            if (myCounter) {
+                myCounter.stop();
+                myCounter = null;
+            } else {
+                alert("Counter not started.");
+            }
+        }
+
+        // Функция createCounter(n), возвращающая объект с методами start(), pause() и stop().
+        function createCounter(n) {
+            let count = n;
+            let timer;
+
+            function tick() {
+                document.getElementById('counterDisplay').innerText = count;
+                count--;
+                if (count < 0) {
+                    clearInterval(timer);
+                }
+            }
+
+            return {
+                start() {
+                    timer = setInterval(tick, 1000);
+                },
+                pause() {
+                    clearInterval(timer);
+                },
+                stop() {
+                    clearInterval(timer);
+                    count = n;
+                    document.getElementById('counterDisplay').innerText = '';
+                }
+            };
+        }
+    </script>
+</body>
+</html>
+
